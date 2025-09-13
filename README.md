@@ -17,6 +17,6 @@ pip install -r requirements.txt
 cp .env.example .env
 # edita .env y pega tu GITHUB_TOKEN
 
-uvicorn app:app --reload --port 8080
+uvicorn main:app --reload --port 8080
 # prueba:
 curl "http://localhost:8080/health"

@@ -24,5 +24,6 @@ if [ ! -f ".env" ]; then
 fi
 
 # 5. Lanzar servidor
+
 echo ">>> Arrancando servidor en http://localhost:8080 ..."
-uvicorn app:app --reload --port 8080
+uvicorn main:app --reload --port 8080
