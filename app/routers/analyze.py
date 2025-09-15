@@ -30,6 +30,9 @@ def analyze(username: str = Query(...), repos_limit: int = Query(5, ge=1, le=20)
             "public_repos": user.get("public_repos"),
             "created_at": user.get("created_at"),
             "html_url": user.get("html_url"),
+            "email": user.get("email"),
+            "blog": user.get("blog"),
+            "twitter_username": user.get("twitter_username")            
         },
         "repos": [map_repo(r) for r in repos],
     }

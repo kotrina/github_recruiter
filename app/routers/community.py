@@ -2,16 +2,16 @@ from fastapi import APIRouter
 from typing import List
 from app.services.github import gh_get, gh_get_paginated
 from app.utils.time import months_ago_dt, parse_iso_dt
+from app.utils.repos import select_repos_for
+
 
 router = APIRouter()
 
-def _select_repos_for(username: str):  # igual que en languages (puedes importarlo desde un módulo shared si quieres)
-    return {"username": username}
     
 
 @router.get("/community")
 def community_profile(username: str, repo_limit: int = 10, include_forks: bool = False, include_archived: bool = False, recent_months: int = 12):
-    selected = _select_repos_for(username, repo_limit, include_forks, include_archived, recent_months)
+    selected = select_repos_for(username, repo_limit, include_forks, include_archived, recent_months)
     out = []
     for r in selected:
         owner, name = r["owner"]["login"], r["name"]
