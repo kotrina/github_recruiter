@@ -4,7 +4,7 @@ load_dotenv(find_dotenv())  # carga .env antes de tocar settings
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
-from app.routers import health, analyze, languages, community , vitality 
+from app.routers import health, analyze, languages, community , vitality , activity
 
 from pathlib import Path
 
@@ -28,6 +28,6 @@ app.include_router(analyze.router, prefix="", tags=["analyze"])
 app.include_router(languages.router, prefix="", tags=["languages"])
 app.include_router(community.router, prefix="", tags=["community"])
 app.include_router(vitality.router, prefix="", tags=["vitality"])
-
+app.include_router(activity.router, prefix="", tags=["actovity"])
 
 # uvicorn main:app --reload --port 8080
