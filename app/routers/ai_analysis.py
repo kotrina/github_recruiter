@@ -41,11 +41,12 @@ generate a concise recruiter-oriented summary in English with these sections:
 1) **Profile snapshot** — 1–2 lines about their developer type and seniority.
 2) **Strengths & skills** — technologies, patterns, or areas of expertise inferred.
 3) **Potential risks or gaps** — what might be missing or unclear from their profile.
-4) **Suggested questions** — 3–4 interview questions to confirm fit.
-5) **Overall impression** — short final paragraph (max 3 sentences).
+4) **Overall impression** — short final paragraph (max 3 sentences).
 
 Keep it concrete and professional. Do NOT invent information not visible on the GitHub page.
 The link to analyze is: https://github.com/{username}
+
+IMPORTANT: Please no more than 1400 characteres
     """
 
     # --- Llamada al cliente Gemini ---
