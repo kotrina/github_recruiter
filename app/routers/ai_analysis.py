@@ -47,6 +47,7 @@ Keep it concrete and professional. Do NOT invent information not visible on the 
 The link to analyze is: https://github.com/{username}
 
 IMPORTANT: Please no more than 1400 characteres
+IMPORTANT: DO NOT INVENT INFORMATION. IF THE PROFILE IS EMPTY, DO NOT ANALYSE IT
     """
 
     # --- Llamada al cliente Gemini ---
