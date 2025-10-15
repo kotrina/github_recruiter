@@ -36,5 +36,5 @@ def languages_core(username: str, repo_limit: int = 30, include_forks: bool = Fa
 
 @router.get("/languages")
 def languages_mix(username: str, repo_limit: int = 30, include_forks: bool = False, include_archived: bool = False, recent_months: int = 12):
-    return languages_core(str,repo_limit,include_forks, include_archived, recent_months)
+    return languages_core(username,repo_limit,include_forks, include_archived, recent_months)
     
