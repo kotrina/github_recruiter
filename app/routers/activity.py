@@ -74,6 +74,9 @@ def _create_is_tag(payload: dict) -> bool:
     """CreateEvent -> True si es tag, usado como 'release'."""
     return (payload or {}).get("ref_type") == "tag"
 
+
+
+
 @router.get("/activity")
 def user_activity(
     username: str,
@@ -81,6 +84,9 @@ def user_activity(
     per_page: int = 100,
     max_pages: int = 3,
 ):
+    return user_activity_core(username, days, per_page, max_pages)
+
+def user_activity_core(username: str,days: int = 90,per_page: int = 100,max_pages: int = 3,):
     """
     Agrega /users/{username}/events/public y devuelve:
       - KPIs

@@ -30,10 +30,9 @@ class GeminiClient:
     def generate_text(
         self,
         prompt: str,
-        temperature: float = 0.3,
+        temperature: float = 0.2,
         max_output_tokens: int = 8192,
         top_p: float = 0.9,
-        top_k: int = 40,
         safety_settings: Optional[Dict[str, Any]] = None, # --- MEJORA 4: Añadir safety_settings ---
     ) -> dict:
         """
@@ -45,19 +44,15 @@ class GeminiClient:
         try:
             generation_config = {
                 "temperature": temperature,
-                "top_p": top_p,
-                "top_k": top_k,
+                "top_p": top_p,                
                 "max_output_tokens": max_output_tokens,
             }
-
+            print(prompt)
             resp = self.model.generate_content(
                 prompt,
                 generation_config=generation_config,
                 safety_settings=safety_settings, # Pasar la configuración de seguridad
-            )
-            print("--------------------------")
-            print(resp.candidates)
-            print("--------------------------")
+            )            
             # --- MEJORA 2: Manejo detallado de respuestas bloqueadas ---
             if resp.candidates and resp.candidates[0].finish_reason == 'SAFETY':
                 return {
@@ -80,6 +75,9 @@ class GeminiClient:
         except Exception as e:
             # --- MEJORA 3: Errores más específicos de la API ---
             # Un error común es 'API key not valid'.
+            print("Responses.Candidates:")
+            print(resp.candidates)
+            print(resp.candidates[0].safety_ratings)
             return {"error": f"Error en la llamada a la API de Gemini: {e}"}
 
 

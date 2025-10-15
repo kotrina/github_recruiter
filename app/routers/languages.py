@@ -7,11 +7,7 @@ from app.utils.repos import select_repos_for
 
 router = APIRouter()
 
-
-
-@router.get("/languages")
-def languages_mix(username: str, repo_limit: int = 30, include_forks: bool = False, include_archived: bool = False, recent_months: int = 12):
-    
+def languages_core(username: str, repo_limit: int = 30, include_forks: bool = False, include_archived: bool = False, recent_months: int = 12):
     selected = select_repos_for(username, repo_limit, include_forks, include_archived, recent_months)
 
     totals: Dict[str, int] = {}
@@ -37,3 +33,8 @@ def languages_mix(username: str, repo_limit: int = 30, include_forks: bool = Fal
         "percentages": percentages,
         "params": {"repo_limit": repo_limit, "include_forks": include_forks, "include_archived": include_archived, "recent_months": recent_months},
     }
+
+@router.get("/languages")
+def languages_mix(username: str, repo_limit: int = 30, include_forks: bool = False, include_archived: bool = False, recent_months: int = 12):
+    return languages_core(str,repo_limit,include_forks, include_archived, recent_months)
+    

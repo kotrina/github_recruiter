@@ -216,6 +216,9 @@ def community_profile(
     include_archived: bool = False,
     recent_months: int = 12,
 ):
+  return community_profile_core(username, repo_limit, include_forks, include_archived, recent_months)
+
+def community_profile_core(username: str,repo_limit: int = 10,include_forks: bool = False,include_archived: bool = False, recent_months: int = 12,):
     """
     Devuelve por repo:
       - community_score (0..100) = popularity(0..70) + governance(0..30)
@@ -290,3 +293,5 @@ def community_profile(
             "recent_months": recent_months,
         },
     }
+    
+
