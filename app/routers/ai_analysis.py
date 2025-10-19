@@ -88,10 +88,12 @@ def ai_analysis(
     else:
         lang_note = "Respond **in English**. Use concise, professional language for international recruiters."
         lang_label = "English"
-        
+
     prompt = f"""
 You are a senior technical recruiter assistant. You cannot browse the web.
 Analyze the following GitHub context (JSON) and produce a concise briefing.
+
+LANGUAGE: {lang_label}, lang_note
 
 CONTEXT_JSON:
 {ctx_json}
