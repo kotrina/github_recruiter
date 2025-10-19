@@ -18,12 +18,18 @@ def _user(profile: str) -> str:
 def ai_analysis(
     profile: str = Query(..., description="GitHub username or profile URL"),
     days: int = 90,
+    lang: str = Query("EN", description="Language for AI output: EN or ES"),
+
 ):
     try:
         username = _user(profile)
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid profile format")
 
+    lang = lang.upper()
+    if lang not in ("EN", "ES"):
+        raise HTTPException(status_code=400, detail="Invalid lang, must be EN or ES")
+    
     # Ejecutar en paralelo para bajar latencia
     with ThreadPoolExecutor(max_workers=3) as ex:
         f_lang = ex.submit(languages_core, username, 30, 12, False, False)
@@ -75,6 +81,14 @@ def ai_analysis(
     }
     ctx_json = json.dumps(payload, separators=(",", ":"))
 
+    # --- Language-specific instruction ---
+    if lang == "ES":
+        lang_note = "Responde **en español**. Usa un tono profesional y claro para recruiters en España o LATAM."
+        lang_label = "Español"
+    else:
+        lang_note = "Respond **in English**. Use concise, professional language for international recruiters."
+        lang_label = "English"
+        
     prompt = f"""
 You are a senior technical recruiter assistant. You cannot browse the web.
 Analyze the following GitHub context (JSON) and produce a concise briefing.
