@@ -47,7 +47,7 @@ class GeminiClient:
                 "top_p": top_p,                
                 "max_output_tokens": max_output_tokens,
             }
-            print(prompt)
+            
             resp = self.model.generate_content(
                 prompt,
                 generation_config=generation_config,
@@ -74,10 +74,7 @@ class GeminiClient:
 
         except Exception as e:
             # --- MEJORA 3: Errores más específicos de la API ---
-            # Un error común es 'API key not valid'.
-            print("Responses.Candidates:")
-            print(resp.candidates)
-            print(resp.candidates[0].safety_ratings)
+            # Un error común es 'API key not valid'.            
             return {"error": f"Error en la llamada a la API de Gemini: {e}"}
 
 
