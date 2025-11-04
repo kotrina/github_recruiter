@@ -4,7 +4,7 @@ import google.generativeai as genai
 from typing import Optional, Dict, Any
 
 class GeminiClient:
-    def __init__(self, api_key: Optional[str], model_name: str = "gemini-2.5-flash"):
+    def __init__(self, api_key: Optional[str], model_name: str = "gemini-2.5-flash-lite"):
         """
         Inicializa el cliente de Gemini.
         Configura la API y crea una instancia reutilizable del modelo.
